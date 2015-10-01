@@ -1,0 +1,22 @@
+<ion-view view-title="Services">
+  <ion-content class="padding" ng-controller="ServicesCtrl" ng-init="init()">
+
+	  <div class="container" ng-show="data.error !== undefined ">
+      <div class="messages">
+	      <h6 class="message-text">{{data.error}}</h6>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class="item item-icon-left item-button-right" ng-repeat="item in data.types">
+        <a class="type-button">
+          <span class="{{item.icon}}"></span>
+          {{item.type}}
+        </a>
+        <a href="#/tab/preferences" class="button" ng-click="config(item.type, item.preferences)">
+          <i class="ion-ios-gear"></i>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

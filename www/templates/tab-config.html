@@ -1,0 +1,28 @@
+<ion-view view-title="Config">
+  <ion-content class="padding">
+
+    <div class="list" ng-controller='ConfigCtrl'>
+        <label class="item item-input">
+            <input type="text" ng-model="address" placeholder="Server Address" />
+        </label>
+        <label class="item item-input">
+            <input type="number" ng-model="port" placeholder="Server Port" />
+        </label>
+
+        <button class="button button-block button-positive" ng-click="save()">Save</button>
+
+        <div class="info" ng-hide='host === undefined || host === "" '>
+            <div class="bar bar-balanced">
+                <h4 class="title">{{host}}</h4>
+            </div>
+        </div>
+
+        <div class="info" ng-show='host === undefined || host === "" '>
+            <div class="messages">
+                <h6 class="message-text">Was not set up server address.</h6>
+            </div>
+        </div>
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,13 @@
+<ion-view view-title="Preferences">
+  <ion-content class="padding">
+
+		<div ng-controller="PreferencesCtrl">
+			<form id="formprefs" method="post">
+				<span id="host" style="display:none">{{host}}</span>
+			    <preferences></preferences>
+			    <button class="button button-block button-positive" onclick="prefs.savePreferences()">Save</button>
+			</form>
+		</div>
+
+  </ion-content>
+</ion-view>
