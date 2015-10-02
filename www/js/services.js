@@ -11,12 +11,12 @@ angular.module('starter.services', [])
   }
 
   var save = function(config){
-    window.localStorage.setItem('brokerconfig', JSON.stringify(config));
+    window.localStorage.setItem('brokerclient', JSON.stringify(config));
   };
 
   var load = function() {
     var host = '';
-    var config = JSON.parse(window.localStorage.getItem('brokerconfig'));
+    var config = JSON.parse(window.localStorage.getItem('brokerclient'));
 
     if(config !== null && config.address !== '' && config.address !== undefined) {
       if(temHttp(config.address))

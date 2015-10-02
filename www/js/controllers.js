@@ -1,6 +1,28 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, $http, ConfigService) {
+  $scope.services = [];
+  var host = ConfigService.load();
+
+  var filter = {
+          "user": ConfigService.recoverEmail()
+        };
+
+  var promisse = $http.get(host + '/myServices/' + filter['user']);
+
+//  $scope.loading = true;
+  promisse.success(function(data){
+    if(data) {
+      console.log(data);
+      $scope.services = data;
+    }
+
+   // $scope.loading = false;
+  }).error(function(error){
+    $scope.message = 'Error on connect to server.';
+ //   $scope.loading = false;
+  });
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -278,7 +300,7 @@ angular.module('starter.controllers', [])
       promisse.success(function (data) {
         $scope.loading = false;
         if (data.logged){
-          $scope.data.loggedIn = true;
+          //$scope.data.loggedIn = true;
           ConfigService.storeEmail($scope.email);
         } else
           $scope.message = 'User or password did not match';

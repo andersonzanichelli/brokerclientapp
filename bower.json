@@ -3,5 +3,31 @@
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.1.0"
-  }
+  },
+  "authors": [
+    "Anderson Zanichelli"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "www/lib"
+  ],
+  
+  "dependencies": {
+    "crypto-js": "*",
+    "jquery": "*"
+  },
+
+  "version": "0.0.2",
+  "homepage": "https://github.com/andersonzanichelli/brokerclient",
+  "description": "A mobile interface to access services",
+  "keywords": [
+    "ionic",
+    "angularjs",
+    "android"
+  ]
 }
