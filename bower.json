@@ -19,7 +19,8 @@
   
   "dependencies": {
     "crypto-js": "*",
-    "jquery": "*"
+    "jquery": "*",
+    "jquery-ui": "*"
   },
 
   "version": "0.0.2",

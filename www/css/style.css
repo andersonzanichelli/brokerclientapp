@@ -1,1 +1,112 @@
-/* Empty. Add your own CSS if you like */
+.list .item.item-stable{
+	padding: 4px;
+	font-size: 14px;
+}
+
+.list .item.item-accordion {
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+  height: 444px;
+}
+
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+.quadrado {
+	width: 340px;
+	height: 442px;
+	background-color: #656565;
+	margin: 0 auto;
+}
+
+.user {
+	border-radius: 6px;
+	background-color: #7CC2F1;
+	width: auto;
+	height: 21px;
+	padding-left: 5px;
+}
+
+.weather {
+	display: inline-block;
+	margin: 0px auto;
+	padding-top: 27px;
+}
+
+.weather-images {
+	float: left;
+	position: relative;
+	top: -15px;
+	background-repeat:no-repeat;
+}
+
+.weather-images.weather-termo {
+	left: -25px;
+	top: 2px;
+}
+
+.weather-images.weather-termo.hot {
+    width: 27px;
+	height: 50px;
+	background: url("../img/weather.png") -17px -39px;
+}
+
+.weather-images.weather-termo.good {
+	width: 30px;
+	height: 51px;
+	background: transparent url("../img/weather.png") -17px -261px;
+}
+
+.weather-images.weather-termo.cold {
+    width: 27px;
+	height: 50px;
+	background: transparent url("../img/weather.png") -17px -481px;
+}
+
+.weather-images.weather-sunny {
+	width: 36px;
+	height: 37px;
+	background: transparent url("../img/weather.png") -13px -120px;
+}
+
+.weather-images.weather-cloudy {
+	width: 57px;
+	height: 37px;
+	background: transparent url("../img/weather.png") -5px -563px;
+}
+
+.weather-images.weather-rainy {
+	width: 51px;
+	height: 40px;
+	background: transparent url("../img/weather.png") -5px -190px;
+}
+
+.weather-images.weather-stormy {
+	width: 47px;
+	height: 48px;
+	background: transparent url("../img/weather.png") -8px -412px;
+}
+
+.weather-images.weather-snowy {
+	width: 49px;
+	height: 37px;
+	background: transparent url("../img/weather.png") -9px -857px;
+}
+
+.weather-images.weather-cloudy-sunny {
+	width: 53px;
+	height: 42px;
+	background: transparent url("../img/weather.png") -5px -342px;
+}
+
+.temperature{
+	float: left;
+	font-size: 64px;
+}

@@ -2,6 +2,8 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, $http, ConfigService) {
   $scope.services = [];
+  $scope.message = "";
+  $scope.user = ConfigService.recoverEmail().split("@")[0];
   var host = ConfigService.load();
 
   var filter = {
@@ -13,15 +15,27 @@ angular.module('starter.controllers', [])
 //  $scope.loading = true;
   promisse.success(function(data){
     if(data) {
-      console.log(data);
       $scope.services = data;
     }
-
    // $scope.loading = false;
-  }).error(function(error){
+  });
+
+  promisse.error(function(error){
     $scope.message = 'Error on connect to server.';
  //   $scope.loading = false;
   });
+
+  $scope.toggleGroup = function(group) {
+    if ($scope.isGroupShown(group)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = group;
+    }
+  };
+
+  $scope.isGroupShown = function(group) {
+    return $scope.shownGroup === group;
+  };
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {

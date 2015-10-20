@@ -1,8 +1,29 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
-	  <div ng-repeat="service in services">
-	  	{{service.service}}
-	  </div>
+    <div class="user">
+      <small>User: {{user}}</small>
+    </div>
+    <ion-list>
+      <div ng-repeat="service in services">
+        <ion-item class="item-stable" ng-click="toggleGroup(service)" ng-class="{active: isGroupShown(service)}">
+          <i class="icon" ng-class="isGroupShown(service) ? 'ion-minus' : 'ion-plus'"></i>
+          {{service.service}}
+        </ion-item>
+        <ion-item class="item-accordion" ng-show="isGroupShown(service)" >
+          <div class="weather">
+            <div class="weather-images weather-cloudy"></div>
+            <element class="temperature">{{graus + 0}}°</element>
+            <div class="weather-images weather-termo good"></div>
+
+            Humidity: {{humidity + 0}}%
+            <br/>
+            Wind: {{wind + 0}} km/h
+            <br/>
+            Precipitation: {{precipitation + 0}}%
+          </div>
+        </ion-item>
+      </div>
+    </ion-list>
 
     {{message}}
 

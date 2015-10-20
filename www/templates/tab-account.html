@@ -4,23 +4,23 @@
     <div id="signup" class="list" ng-controller='AccountCtrl'>
 
         <label class="item item-input">
-            <input type="text" ng-model="name" placeholder="Name" required />
+            <input type="text" ng-model="name" placeholder="Name" />
         </label>
 
         <label class="item item-input">
             <div ng-show="emailUsed === true">
                 <span class="ion-alert-circled"></span>
             </div>
-            <input type="email" ng-model="email" placeholder="Email" required ng-blur="validateEmail()"/>
+            <input type="email" ng-model="email" placeholder="Email" ng-blur="validateEmail()"/>
             <loading></loading>
         </label>
 
         <label class="item item-input">
-            <input type="password" ng-model="password" placeholder="Password" required />
+            <input type="password" ng-model="password" placeholder="Password" />
         </label>
 
         <label class="item item-input">
-            <input type="password" ng-model="confirm" placeholder="Confirm" required/>
+            <input type="password" ng-model="confirm" placeholder="Confirm" />
         </label>
 
         <button class="button button-block button-positive" ng-click="confirmation()">Sign up</button>
