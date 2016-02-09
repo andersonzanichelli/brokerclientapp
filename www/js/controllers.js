@@ -309,7 +309,12 @@ angular.module('starter.controllers', [])
         "password": CryptoJS.SHA256($scope.password).toString()
       };
 
-      var promisse = $http.get($scope.host + '/login/' + '/' + user['email'] + '/' + user['password']);
+      var promisse = $http({
+        method: 'POST',
+        url: $scope.host + '/login',
+        data: user,
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      });
 
       promisse.success(function (data) {
         $scope.loading = false;
