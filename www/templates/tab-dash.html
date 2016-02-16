@@ -1,5 +1,9 @@
 <ion-view view-title="Dashboard">
+
   <ion-content class="padding">
+
+    <div class="spinner" ng-show="loading"></div>
+    <br/>
     <div class="user">
       <small>User: {{user}}</small>
       <input name="host" ng-model="host" style="display:none"/>
@@ -10,8 +14,11 @@
           <i class="icon" ng-class="isGroupShown(service) ? 'ion-minus' : 'ion-plus'"></i>
           {{service.service}}
         </ion-item>
+
         <ion-item class="item-accordion" ng-show="isGroupShown(service)" ng-click="showService(service)">
+
           <div ng-bind-html="serviceprovided | html"></div>
+
         </ion-item>
       </div>
     </ion-list>

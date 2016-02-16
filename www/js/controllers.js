@@ -9,6 +9,7 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, $http, $sce, ConfigService) {
   $scope.services = [];
   $scope.message = "";
+  $scope.loading = true;
   $scope.user = ConfigService.recoverEmail().split("@")[0];
   var host = ConfigService.load();
   $scope.serviceprovided = '';
@@ -22,17 +23,17 @@ angular.module('starter.controllers', [])
     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
   });
 
-//  $scope.loading = true;
   promisse.success(function(result){
+    $scope.loading = true;
     if(result)
       $scope.services = result;
-   // $scope.loading = false;
+      $scope.loading = false;
   });
 
   promisse.error(function(error){
     $scope.services = [{"service": "Weather"}];
     //$scope.message = 'Error on connect to server.';
- //   $scope.loading = false;
+    $scope.loading = false;
   });
 
   $scope.toggleGroup = function(group) {
@@ -52,6 +53,7 @@ angular.module('starter.controllers', [])
   };
 
   $scope.showService = function(service) {
+    $scope.loading = true;
 
     var promisse = $http({
       method: 'POST',
@@ -67,6 +69,7 @@ angular.module('starter.controllers', [])
       if(result){
         $scope.serviceprovided = result;
       }
+      $scope.loading = false;
     });
   };
 })
