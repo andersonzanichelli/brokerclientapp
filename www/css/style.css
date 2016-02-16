@@ -110,3 +110,7 @@
 	float: left;
 	font-size: 64px;
 }
+
+.add-url {
+	right: 60px !important;
+}

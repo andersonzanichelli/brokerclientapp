@@ -1,0 +1,30 @@
+<ion-view view-title="Link">
+  <ion-content class="padding">
+
+		<div ng-controller="LinkCtrl">
+			<label>URL for {{typeService}}</label>
+			<span id="host" style="display:none">{{host}}</span>
+
+			<label class="item item-input">
+        		<input type="url" ng-model="url" placeholder="URL" />
+    		</label>
+
+    		<label class="item item-input">
+        		<input type="email" ng-model="email" placeholder="Email" />
+    		</label>
+
+    		<label class="item item-input">
+        		<input type="password" ng-model="password" placeholder="Password" />
+    		</label>
+
+		    <button class="button button-block button-positive" ng-click="save()">Save</button>
+
+		    <div class="info" ng-show='ok === undefined || ok === "" '>
+	            <div class="messages">
+	                <h6 class="message-text">{{message}}</h6>
+	            </div>
+        	</div>
+		</div>
+
+  </ion-content>
+</ion-view>

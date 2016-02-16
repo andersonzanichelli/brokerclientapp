@@ -7,6 +7,13 @@
 			    <preferences></preferences>
 			    <button class="button button-block button-positive" onclick="prefs.savePreferences()">Save</button>
 			</form>
+
+			<div class="info" ng-show='ok === undefined || ok === "" '>
+	            <div class="messages">
+	            	<div ng-bind-html="getHtml(providedservice)"></div>
+	                <h6 class="message-text">{{message}}</h6>
+	            </div>
+        	</div>
 		</div>
 
   </ion-content>

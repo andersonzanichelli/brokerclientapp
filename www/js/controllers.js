@@ -1,27 +1,37 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $http, ConfigService) {
+.filter('html', function($sce) {
+    return function(val) {
+        return $sce.trustAsHtml(val);
+    };
+})
+
+.controller('DashCtrl', function($scope, $http, $sce, ConfigService) {
   $scope.services = [];
   $scope.message = "";
   $scope.user = ConfigService.recoverEmail().split("@")[0];
   var host = ConfigService.load();
+  $scope.serviceprovided = '';
 
-  var filter = {
-          "user": ConfigService.recoverEmail()
-        };
+  var filter = {"email": ConfigService.recoverEmail()};
 
-  var promisse = $http.get(host + '/myServices/' + filter['user']);
+  var promisse = $http({
+    method: 'POST',
+    host: host + '/myServices',
+    data: filter,
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+  });
 
 //  $scope.loading = true;
-  promisse.success(function(data){
-    if(data) {
-      $scope.services = data;
-    }
+  promisse.success(function(result){
+    if(result)
+      $scope.services = result;
    // $scope.loading = false;
   });
 
   promisse.error(function(error){
-    $scope.message = 'Error on connect to server.';
+    $scope.services = [{"service": "Weather"}];
+    //$scope.message = 'Error on connect to server.';
  //   $scope.loading = false;
   });
 
@@ -33,8 +43,31 @@ angular.module('starter.controllers', [])
     }
   };
 
-  $scope.isGroupShown = function(group) {
-    return $scope.shownGroup === group;
+  $scope.isGroupShown = function(service) {
+    return $scope.shownGroup === service;
+  };
+
+  $scope.getHtml = function(html){
+    return $sce.trustAsHtml(html);
+  };
+
+  $scope.showService = function(service) {
+
+    var promisse = $http({
+      method: 'POST',
+      url: host + '/showService',
+      data: {"service": service.service, "email": ConfigService.recoverEmail()},
+      headers: {
+        Accept : "text/plain; charset=utf-8",
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+
+    promisse.success(function(result){
+      if(result){
+        $scope.serviceprovided = result;
+      }
+    });
   };
 })
 
@@ -202,14 +235,6 @@ angular.module('starter.controllers', [])
 
     $scope.savePreferences = function(){
       var promisse = $http.post($scope.host + '/savePreferences', $scope.amount);
-
-      promisse.success(function(result){
-        console.log(result);
-      });
-
-      promisse.error(function(error){
-        console.log(error);
-      });
     };
 
     $scope.create = function(){
@@ -251,7 +276,11 @@ angular.module('starter.controllers', [])
           label.append(obj.label);
           container.append(el);
           container.append(label);
-
+        } else if(obj.type === "select"){
+          label.addClass('toogle');
+          label.append(obj.label);
+          container.append(label);
+          container.append(el);
         } else {
           el.attr('placeholder', obj.label);
           label.addClass('item item-input');
@@ -329,4 +358,44 @@ angular.module('starter.controllers', [])
       });
     }
   }
+})
+
+.controller('LinkCtrl', function($scope, $http, ConfigService, PreferencesService) {
+  $scope.host = ConfigService.load();
+  $scope.typeService = PreferencesService.getService();
+  $scope.message = "";
+
+  $scope.service = function() {
+    return PreferencesService.getService();
+  };
+
+  $scope.save = function(){
+    var config = {
+      "url": $scope.url,
+      "email": $scope.email,
+      "password": $scope.password,
+      "service": PreferencesService.getService()
+    };
+
+    var promisse = $http({
+      method: 'POST',
+      url: $scope.host + '/saveLink',
+      data: config,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    });
+
+    promisse.success(function(result){
+      if(result.success) {
+        $scope.message = 'Success!';
+        $scope.url = '';
+        $scope.email = '';
+        $scope.password = '';
+      } else
+        $scope.message = 'Sorry, the data was not save!';
+    });
+
+    promisse.error(function(error){
+      $scope.message = 'Sorry, there was some troble!';
+    });
+  };
 });

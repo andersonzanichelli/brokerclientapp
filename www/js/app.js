@@ -100,6 +100,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.link', {
+    url: '/link',
+    views: {
+      'tab-link': {
+        templateUrl: 'templates/tab-link.html',
+        controller: 'LinkCtrl'
+      }
+    }
+  })
+
   .state('tab.chats', {
       url: '/chats',
       views: {
